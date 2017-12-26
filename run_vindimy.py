@@ -30,44 +30,58 @@ my_photo_comments = [
 	'nice :)',
 	'nice, very nice',
 	'marvelous :)',
-	'just great :)'
+	'just great :)',
+	'gorgeous',
+	'love this',
+	'beautiful :)',
+	'what camera did you use?',
+	'cool :)',
+	'excellent :)',
+	'love the framing here',
+	'love this composition',
+	'yesss',
+	'great content',
+	'wonderful :)',
+	'inspiring!',
+	'pretty great :)'
 ]
 session.set_comments(my_photo_comments, media='Photo')
 
 
 ###### ONE ######
 ## Interact with sought-after users ##
-my_users=[
-	'actionhiro',
-	'nwoy',
-	'omarzrobles'
-]
-session.set_upper_follower_count(limit = 200000000)
-session.set_lower_follower_count(limit = 0)
-for user in my_users:
-	try:
-		session.interact_user_followers([user], amount=10, random=True)
-	except (TimeoutException, WebDriverException) as e:
-		print "Caught exception from selenium.common.exceptions: " + str(e)
-		pass
-session.set_upper_follower_count(limit = 2000)
-session.set_lower_follower_count(limit = 10)
+#my_users=[
+#	'actionhiro',
+#	'nwoy',
+#	'omarzrobles',
+#	'sadsongsnskinnyjeans'
+#]
+#session.set_upper_follower_count(limit = 200000000)
+#session.set_lower_follower_count(limit = 0)
+#for user in my_users:
+#	try:
+#		session.interact_user_followers([user], amount=10, random=True)
+#	except (TimeoutException, WebDriverException) as e:
+#		print "Caught exception from selenium.common.exceptions: " + str(e)
+#		pass
+#session.set_upper_follower_count(limit = 2000)
+#session.set_lower_follower_count(limit = 10)
 
 
 ###### TWO ######
 ## Interact with own users ##
-session.set_upper_follower_count(limit = 200000000)
-session.set_lower_follower_count(limit = 0)
-try:
-	session.set_do_comment(enabled=False, percentage=25)
-	session.interact_user_followers(['nyamaste'], amount=10, random=True)
-	session.interact_user_following(['nyamaste'], amount=50, random=True)
-	session.set_do_comment(enabled=True, percentage=25)
-except (TimeoutException, WebDriverException) as e:
-	print "Caught exception from selenium.common.exceptions: " + str(e)
-	pass
-session.set_upper_follower_count(limit = 2000)
-session.set_lower_follower_count(limit = 10)
+#session.set_upper_follower_count(limit = 200000000)
+#session.set_lower_follower_count(limit = 0)
+#try:
+#	session.set_do_comment(enabled=False, percentage=25)
+#	session.interact_user_followers(['nyamaste'], amount=10, random=True)
+#	session.interact_user_following(['nyamaste'], amount=50, random=True)
+#	session.set_do_comment(enabled=True, percentage=25)
+#except (TimeoutException, WebDriverException) as e:
+#	print "Caught exception from selenium.common.exceptions: " + str(e)
+#	pass
+#session.set_upper_follower_count(limit = 2000)
+#session.set_lower_follower_count(limit = 10)
 
 
 ###### THREE ######
@@ -151,7 +165,8 @@ my_low_locations = [
 	'279466735/athleta/',
 	'1022325093/lululemon-athletica/',
 	'981555631/lululemon-athletica/',
-	'926224683/lululemon-athletica-studio-city/'
+	'926224683/lululemon-athletica-studio-city/',
+	'246780626/la-dancefit/'
 ]
 for my_loc in my_high_locations:
         try:
@@ -165,17 +180,4 @@ for my_loc in my_low_locations:
 		session.set_upper_follower_count(limit = 2000)
 		session.like_by_locations([my_loc], amount=3)
 	except (TimeoutException, WebDriverException) as e:
-		print "Caught exception from selenium.common.exceptions: " + str(e)
-		pass
-
-
-###### FIVE ######
-## Unfollow ##
-#try:
-#	session.unfollow_users(amount=50, onlyInstapyFollowed=False, onlyInstapyMethod='LIFO')
-#except (TimeoutException, WebDriverException) as e:
-#	print "Caught exception from selenium.common.exceptions: " + str(e)
-#	pass
-
-
-session.end()
+		print "Caught exception from selenium.
