@@ -180,4 +180,17 @@ for my_loc in my_low_locations:
 		session.set_upper_follower_count(limit = 2000)
 		session.like_by_locations([my_loc], amount=3)
 	except (TimeoutException, WebDriverException) as e:
-		print "Caught exception from selenium.
+		print "Caught exception from selenium.common.exceptions: " + str(e)
+		pass
+
+
+###### FIVE ######
+## Unfollow ##
+#try:
+#	session.unfollow_users(amount=50, onlyInstapyFollowed=False, onlyInstapyMethod='LIFO')
+#except (TimeoutException, WebDriverException) as e:
+#	print "Caught exception from selenium.common.exceptions: " + str(e)
+#	pass
+
+
+session.end()
