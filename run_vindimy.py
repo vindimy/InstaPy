@@ -176,7 +176,7 @@ while True:
 	session.set_lower_follower_count(limit = 0)
 	for user in my_users:
 		try:
-			session.interact_user_followers([user], amount=10, random=True)
+			session.interact_user_followers([user], amount=10, randomize=True)
 		except (TimeoutException, WebDriverException) as e:
 			print "Caught exception from selenium.common.exceptions: " + str(e)
 			pass
@@ -192,8 +192,7 @@ while True:
 	session.set_lower_follower_count(limit = 0)
 	try:
 		session.set_do_comment(enabled=False, percentage=25)
-		session.interact_user_followers(['nyamaste'], amount=10, random=True)
-		session.interact_user_following(['nyamaste'], amount=50, random=True)
+		session.interact_user_followers(['nyamaste'], amount=10, randomize=True)
 		session.set_do_comment(enabled=True, percentage=25)
 	except (TimeoutException, WebDriverException) as e:
 		print "Caught exception from selenium.common.exceptions: " + str(e)
