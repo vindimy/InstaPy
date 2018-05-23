@@ -36,7 +36,6 @@ my_photo_comments = [
 	'gorgeous',
 	'love this',
 	'beautiful :)',
-	'what camera did you use?',
 	'cool :)',
 	'excellent :)',
 	'love the framing here',
@@ -50,81 +49,65 @@ session.set_comments(my_photo_comments, media='Photo')
 
 
 my_tags = [
-	'#yogainspiration',
-	'#yogainstructor',
-	'#acroyoga',
-	'#circuslife',
-	'#dancerlife',
-	'#balletlife',
-	'#pointe',
-	'#fitnessmotivation',
-	'#fitnessphotography',
-	'#fitnessmodel',
-	'#culvercity',
-#	'#jaggedvdf',
-#	'#vedayoga',
-#	'#corepower',
-	'#corepoweryoga',
-	'#yogaworks'
+	'#acroyogaberlin',
+	'#fitnessberlin',
+	'#yogaberlin',
+	'#berlin',
+	'#acroberlin'
 ]
 
 my_high_locations = [
-	'212999109/los-angeles-california/',
-	'213420290/culver-city-california/',
-	'137242643/santa-monica-california/',
-	'212931920/hollywood/'
+	'213131048/berlin-germany/',
+	'216699620/wedding-berlin/',
 ]
 my_low_locations = [
-	'214645216/muscle-beach/',
-	'1026253633/corepower-yoga/',
-	'1026344343/corepower-yoga/',
-	'394273176/veda-yoga-center/',
-	'129538823/red-diamond-yoga/',
-	'243768840/corepower-yoga/',
-	'4562253/corepower-yoga/',
-	'97618096/corepower-yoga/',
-	'121899548455661/love-yoga/',
-	'414408751/yogaraj/',
-	'2134200/liberation-yoga/',
-	'1001363005/namastday-yoga/',
-	'1493463307624837/hyperslow/',
-	'7896197/hot8yoga/',
-	'47542763/hot-8-yoga/',
-	'214469887/your-neighborhood-studio-when-in-doubt-dance/',
-	'398168213/danceline-la/',
-	'237278133/jagged-vertical-dance-fitness/',
-	'1619540185028533/create-yoga/',
-	'30166282/laughing-frog-yoga/',
-	'696738/yogaworks-larchmont/',
-	'227812116/yogaworks-main-street/',
-	'591038088/yogaworks-brentwood/',
-	'23821579/yogaworks-pasadena/',
-	'3396943/yogaworks-montana/',
-	'1573376/yogaworks-westwood/',
-	'684485752/aerial-warehouse/',
-	'10307275/the-choreography-house/',
-	'694809615/womack-and-bowman/',
-	'147233/kinetic-theory/',
-	'126189864687304/aeriform-arts/',
-	'18119899/aeriform-arts/',
-	'2953516/cirque-school-los-angeles/',
-	'222990220/edge-performing-arts-center/',
-	'402321672/kinship-studios/',
-	'1014870077/set-and-flow-yoga/',
-	'906425066/wanderlust-hollywood/',
-	'235775388/yoga-salt/',
-	'1030280488/alo-yoga-store/',
-	'8339259/athleta/',
-	'483411384/athleta/',
-	'279466735/athleta/',
-	'1022325093/lululemon-athletica/',
-	'981555631/lululemon-athletica/',
-	'926224683/lululemon-athletica-studio-city/',
-	'246780626/la-dancefit/'
+	'237878116/seestrae/',
+	'116971912/yoga-sky-berlin/',
+	'250197745354365/yoga-rebellion/',
+	'65297733/chimosa/',
+	'599299874/yogafurdich/',
+	'1020136606/ashtanga-yoga-berlin/',
+	'289063685/element-yoga/',
+	'96367417/yellow-yoga/',
+	'213813394/jivamukti-yoga-berlin/',
+	'265803191/lagoa-yoga-berlin/',
+	'254570144724325/zen-yoga-by-dynamic-mindfulness/',
+	'256159741/ycba-yogacircle-berlin-academy/',
+	'1032826954/spirit-yoga-berlin/',
+	'1015509393/yoga-delta-berlin/',
+	'238701440/spirit-yoga-berlin/',
+	'1800120726682395/yoga-barn-berlin/',
+	'1022004264/becycle/',
+	'32934/aspria-berlin-kudamm/',
+	'773405931/ladycompany-fitness-fur-frauen-gmbh/',
+	'242061176268639/elixia-berlin/',
+	'1844977909085562/elixia-berlin/',
+	'105605239994491/elixia-berlin/',
+	'1015509393/yoga-delta-berlin/'
 ]
 
 
 while True:
+	## Interact with locations ##
+	for my_loc in my_high_locations:
+		try:
+			session.like_by_locations([my_loc], amount=50)
+			time.sleep(60)
+		except (TimeoutException, WebDriverException) as e:
+			print "Caught exception from selenium.common.exceptions: " + str(e)
+			os._exit(1)
+	for my_loc in my_low_locations:
+		try:
+			session.like_by_locations([my_loc], amount=3)
+			time.sleep(60)
+		except (TimeoutException, WebDriverException) as e:
+			print "Caught exception from selenium.common.exceptions: " + str(e)
+			os._exit(1)
+
+	# Pause
+	time.sleep(600)
+
+
 	## Interact with hashtags ##
 	for my_tag in my_tags:
 		try:
@@ -137,35 +120,13 @@ while True:
 	# Pause
 	time.sleep(600)
 
+
 	## Interact with sought-after users ##
 	my_users=[
-		'actionhiro',
-		'nwoy',
-		'omarzrobles',
-		'sadsongsnskinnyjeans'
 	]
 	for user in my_users:
 		try:
 			session.interact_user_followers([user], amount=10, randomize=True)
-			time.sleep(60)
-		except (TimeoutException, WebDriverException) as e:
-			print "Caught exception from selenium.common.exceptions: " + str(e)
-			os._exit(1)
-
-	# Pause
-	time.sleep(600)
-
-	## Interact with locations ##
-	for my_loc in my_high_locations:
-		try:
-			session.like_by_locations([my_loc], amount=50)
-			time.sleep(60)
-		except (TimeoutException, WebDriverException) as e:
-			print "Caught exception from selenium.common.exceptions: " + str(e)
-			os._exit(1)
-	for my_loc in my_low_locations:
-		try:
-			session.like_by_locations([my_loc], amount=3)
 			time.sleep(60)
 		except (TimeoutException, WebDriverException) as e:
 			print "Caught exception from selenium.common.exceptions: " + str(e)
