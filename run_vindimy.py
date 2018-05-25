@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 import os
 import time
 from instapy import InstaPy
@@ -19,6 +21,11 @@ session.set_delimit_liking(enabled=True, max=100, min=0)
 session.set_delimit_commenting(enabled=True, max=20, min=0)
 
 my_photo_comments = [
+	u'👏🏻👏🏻👏🏻',
+	u'nice 🙌🏻',
+	u'𝓛ȯ𝒱𝓮 𝒾𝓉 😝',
+	u'good one 👌🏻🔥',
+	u'nice one 😜',
 	'good one :)',
 	'nice pic!',
 	'love your profile!',
@@ -50,7 +57,7 @@ session.set_comments(my_photo_comments, media='Photo')
 
 
 my_tags = [
-	'#yogainspiration',
+#	'#yogainspiration',
 	'#yogainstructor',
 	'#acroyoga',
 	'#circuslife',
@@ -61,6 +68,7 @@ my_tags = [
 	'#fitnessphotography',
 	'#fitnessmodel',
 	'#culvercity',
+	'#santamonica',
 #	'#jaggedvdf',
 #	'#vedayoga',
 #	'#corepower',
@@ -132,7 +140,7 @@ while True:
 			time.sleep(60)
 		except (TimeoutException, WebDriverException) as e:
 			print "Caught exception from selenium.common.exceptions: " + str(e)
-			os._exit(1)
+			continue
 
 	# Pause
 	time.sleep(600)
@@ -150,7 +158,7 @@ while True:
 			time.sleep(60)
 		except (TimeoutException, WebDriverException) as e:
 			print "Caught exception from selenium.common.exceptions: " + str(e)
-			os._exit(1)
+			continue
 
 	# Pause
 	time.sleep(600)
@@ -162,14 +170,14 @@ while True:
 			time.sleep(60)
 		except (TimeoutException, WebDriverException) as e:
 			print "Caught exception from selenium.common.exceptions: " + str(e)
-			os._exit(1)
+			continue
 	for my_loc in my_low_locations:
 		try:
 			session.like_by_locations([my_loc], amount=3)
 			time.sleep(60)
 		except (TimeoutException, WebDriverException) as e:
 			print "Caught exception from selenium.common.exceptions: " + str(e)
-			os._exit(1)
+			continue
 
 	# Pause
 	time.sleep(600)
@@ -182,7 +190,7 @@ while True:
 	#	session.set_do_comment(enabled=True, percentage=25)
 	#except (TimeoutException, WebDriverException) as e:
 	#	print "Caught exception from selenium.common.exceptions: " + str(e)
-	#	os._exit(1)
+	#	continue
 
 	# Pause
 	#time.sleep(3600)
