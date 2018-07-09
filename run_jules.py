@@ -14,7 +14,7 @@ session.login()
 # Set up options
 session.set_relationship_bounds(enabled=True, potency_ratio=0.4, delimit_by_numbers=True, max_followers=3000, max_following=3000, min_followers=10, min_following=50)
 session.set_do_comment(enabled=True, percentage=20)
-session.set_do_follow(enabled=False, percentage=20, times=2)
+session.set_do_follow(enabled=False, percentage=0, times=0)
 session.set_do_like(enabled=True, percentage=50)
 session.set_user_interact(amount=3, randomize=True, percentage=50, media='Photo')
 session.set_delimit_liking(enabled=True, max=100, min=0)
@@ -65,7 +65,6 @@ my_tags = [
 	'#yogadeutschland',
 	'#berlin',
 	'#deutschland',
-	'#cologne',
 	'#munich',
 	'#barcelona'
 ]
@@ -73,7 +72,6 @@ my_tags = [
 my_high_locations = [
 	'213131048/berlin-germany/',
 	'216699620/wedding-berlin/',
-	'213121716/cologne-germany/',
 	'213359469/munich-germany/',
 	'213100244/barcelona-spain/'
 ]
@@ -112,17 +110,17 @@ while True:
 	for my_loc in my_high_locations:
 		try:
 			session.like_by_locations([my_loc], amount=50)
-			time.sleep(60)
+			time.sleep(300)
 		except (TimeoutException, WebDriverException) as e:
 			print "Caught exception from selenium.common.exceptions: " + str(e)
-			continue
+			os._exit(1)
 	for my_loc in my_low_locations:
 		try:
 			session.like_by_locations([my_loc], amount=3)
 			time.sleep(60)
 		except (TimeoutException, WebDriverException) as e:
 			print "Caught exception from selenium.common.exceptions: " + str(e)
-			continue
+			os._exit(1)
 
 	# Pause
 	time.sleep(600)
@@ -132,10 +130,10 @@ while True:
 	for my_tag in my_tags:
 		try:
 			session.like_by_tags([my_tag], amount=50)
-			time.sleep(60)
+			time.sleep(300)
 		except (TimeoutException, WebDriverException) as e:
 			print "Caught exception from selenium.common.exceptions: " + str(e)
-			continue
+			os._exit(1)
 
 	# Pause
 	time.sleep(600)
@@ -146,10 +144,10 @@ while True:
 	for user in my_users:
 		try:
 			session.interact_user_followers([user], amount=10, randomize=True)
-			time.sleep(60)
+			time.sleep(300)
 		except (TimeoutException, WebDriverException) as e:
 			print "Caught exception from selenium.common.exceptions: " + str(e)
-			continue
+			os._exit(1)
 
 	# Pause
 	time.sleep(600)
@@ -162,7 +160,7 @@ while True:
 	#	session.set_do_comment(enabled=True, percentage=25)
 	#except (TimeoutException, WebDriverException) as e:
 	#	print "Caught exception from selenium.common.exceptions: " + str(e)
-	#	continue
+	#	os._exit(1)
 
 	# Pause
 	#time.sleep(3600)
