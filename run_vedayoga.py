@@ -70,20 +70,26 @@ my_tags = [
 ]
 
 my_high_locations = [
-	'212999109/los-angeles-california/',
+#	'212999109/los-angeles-california/',
 	'213420290/culver-city-california/',
-	'137242643/santa-monica-california/',
-	'212970049/beverly-hills-california',
-	'212931920/hollywood/'
+#	'137242643/santa-monica-california/',
+#	'212970049/beverly-hills-california',
+#	'212931920/hollywood/'
 ]
 my_low_locations = [
-	'214645216/muscle-beach/',
+#	'214645216/muscle-beach/',
+	'4185012/bhakti-yoga-shala',
 	'7896197/hot8yoga/',
 	'47542763/hot-8-yoga/',
 	'214469887/your-neighborhood-studio-when-in-doubt-dance/',
 	'398168213/danceline-la/',
 	'237278133/jagged-vertical-dance-fitness/',
 	'696738/yogaworks-larchmont/',
+	'1017494492/yogaworks-koreatown',
+	'242553045/yogaworks-west-hollywood',
+	'1014187666/yogaworks-playa-vista',
+	'227812116/yogaworks-main-st',
+	'3396943/yogaworks-montana-ave',
 	'10307275/the-choreography-house/',
 	'2953516/cirque-school-los-angeles/',
 	'222990220/edge-performing-arts-center/',
@@ -122,8 +128,28 @@ my_low_locations = [
 	'4216869/yogala-studios',
 	'223635232/tempest-freerunning-academy-south-bay',
 	'2340612/tempest-freerunning-academy',
+	'321242651980143/corepower-yoga',
+	'4562253/corepower-yoga',
+	'97618096/corepower-yoga',
+	'395530056/corepower-yoga',
+	'210171546012908/corepower-yoga',
+	'379914175/corepower-yoga',
+	'1026253633/corepower-yoga',
+	'229811324/corepower-yoga',
+	'1026344343/corepower-yoga',
+	'469890540025601/corepower-yoga'
 ]
 
+my_users = [
+	'bhaktiyogashala',
+	'cirqueschool',
+	'tempestfreerunning',
+	'dancelinela',
+	'kinetictheorycircus',
+	'dancefitnessla',
+	'wanderlusthlwd',
+	'y7studio'
+]
 
 while True:
 	## Interact with locations ##
@@ -158,8 +184,6 @@ while True:
 	time.sleep(600)
 
 	## Interact with sought-after users ##
-	my_users=[
-	]
 	for user in my_users:
 		try:
 			session.interact_user_followers([user], amount=10, randomize=True)
