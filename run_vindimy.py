@@ -12,13 +12,13 @@ session.login()
 
 ###### ZERO ######
 # Set up options
-session.set_relationship_bounds(enabled=True, potency_ratio=0.4, delimit_by_numbers=True, max_followers=3000, max_following=3000, min_followers=10, min_following=50)
-session.set_do_comment(enabled=True, percentage=20)
+session.set_relationship_bounds(enabled=True, potency_ratio=0.4, delimit_by_numbers=True, max_followers=3000, max_following=3000, min_followers=10, min_following=30)
+session.set_do_comment(enabled=True, percentage=40)
 session.set_do_follow(enabled=False, percentage=0, times=0)
 session.set_do_like(enabled=True, percentage=50)
 session.set_user_interact(amount=3, randomize=True, percentage=50, media='Photo')
-session.set_delimit_liking(enabled=True, max=100, min=0)
-session.set_delimit_commenting(enabled=True, max=20, min=0)
+session.set_delimit_liking(enabled=True, max=50, min=0)
+session.set_delimit_commenting(enabled=True, max=30, min=0)
 
 my_photo_comments = [
 	u'👏🏻👏🏻👏🏻',
