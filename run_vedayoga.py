@@ -12,13 +12,13 @@ session.login()
 
 ###### ZERO ######
 # Set up options
-session.set_relationship_bounds(enabled=True, potency_ratio=0.4, delimit_by_numbers=True, max_followers=3000, max_following=3000, min_followers=10, min_following=50)
-session.set_do_comment(enabled=True, percentage=20)
+session.set_relationship_bounds(enabled=True, potency_ratio=0.4, delimit_by_numbers=True, max_followers=3000, max_following=3000, min_followers=10, min_following=30)
+session.set_do_comment(enabled=True, percentage=40)
 session.set_do_follow(enabled=False, percentage=0, times=0)
 session.set_do_like(enabled=True, percentage=50)
 session.set_user_interact(amount=3, randomize=True, percentage=50, media='Photo')
-session.set_delimit_liking(enabled=True, max=100, min=0)
-session.set_delimit_commenting(enabled=True, max=20, min=0)
+session.set_delimit_liking(enabled=True, max=50, min=0)
+session.set_delimit_commenting(enabled=True, max=30, min=0)
 
 my_photo_comments = [
 	u'👏🏻👏🏻👏🏻',
@@ -105,6 +105,21 @@ my_low_locations = [
 	'6672274/yoga-house',
 	'3474112/black-dog-yoga',
 	'146477070/aurayoga',
+	'1714234355507818/agni-yoga',
+	'272074/electric-soul-yoga',
+	'96158264/forward-fold-yoga',
+	'530611/harmony-yoga',
+	'402321672/kinship-studios',
+	'20791098/liveyoga-wellness',
+	'124737873/soho-yoga',
+	'205505996556641/soho-yoga-dtla',
+	'5239297/the-green-yogi',
+	'408483251/the-soul-shack-yoga-wellness-studio',
+	'5359427/yoga-blend',
+	'9923008/yoga-circle-downtown',
+	'6672274/yoga-house',
+	'5928545/yoga-loft-manhattan-beach',
+	'4216869/yogala-studios',
 	'223635232/tempest-freerunning-academy-south-bay',
 	'2340612/tempest-freerunning-academy',
 ]
@@ -158,16 +173,16 @@ while True:
 
 
 	## Interact with own users ##
-	#try:
-	#	session.set_do_comment(enabled=False, percentage=25)
-	#	session.interact_user_followers(['nyamaste'], amount=10, randomize=True)
-	#	session.set_do_comment(enabled=True, percentage=25)
-	#except (TimeoutException, WebDriverException) as e:
-	#	print "Caught exception from selenium.common.exceptions: " + str(e)
-	#	os._exit(1)
+	try:
+		session.set_do_comment(enabled=False, percentage=25)
+		session.interact_user_followers(['vedayoga'], amount=10, randomize=True)
+		session.set_do_comment(enabled=True, percentage=25)
+	except (TimeoutException, WebDriverException) as e:
+		print "Caught exception from selenium.common.exceptions: " + str(e)
+		os._exit(1)
 
 	# Pause
-	#time.sleep(3600)
+	time.sleep(3600)
 
 
 session.end()
