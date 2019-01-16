@@ -56,6 +56,12 @@ session.set_comments(my_photo_comments, media='Photo')
 
 
 my_tags = [
+	'#acroyoga',
+	'#partneryoga',
+	'#acrobatics',
+	'#acroeverywhere',
+	'#ladybase',
+	'#yogagirl',
 	'#acroyogaberlin',
 	'#acroberlin',
 	'#fitnessberlin',
@@ -63,19 +69,19 @@ my_tags = [
 	'#yogaberlin',
 	'#berlinyoga',
 	'#yogadeutschland',
-	'#berlin',
-	'#deutschland',
-	'#munich',
-	'#barcelona'
+	'#berlin'
 ]
 
 my_high_locations = [
+#        '212999109/los-angeles-california/',
+#        '213420290/culver-city-california/',
 	'213131048/berlin-germany/',
 	'216699620/wedding-berlin/',
 	'213359469/munich-germany/',
-	'213100244/barcelona-spain/'
+#	'213100244/barcelona-spain/'
 ]
 my_low_locations = [
+        '214645216/muscle-beach/',
 	'237878116/seestrae/',
 	'116971912/yoga-sky-berlin/',
 	'250197745354365/yoga-rebellion/',
