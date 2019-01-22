@@ -57,21 +57,27 @@ session.set_comments(my_photo_comments, media='Photo')
 
 
 my_tags = [
-	'#yogainstructor',
-	'#acroyoga',
-	'#fitnessmotivation',
-	'#fitnessphotography',
-	'#fitnessmodel',
 	'#culvercity',
 	'#santamonica',
 	'#corepoweryoga',
 	'#losangeles',
-	'#westla'
+	'#westla',
+	'#hollywood',
+	'#beverlyhills',
+	'#culvercitystairs',
+	'#cityofangels',
 ]
 
 my_high_locations = [
 #	'212999109/los-angeles-california/',
 	'213420290/culver-city-california/',
+	'902346/culver-city-stairs/',
+	'422209465/downtown-culver-city',
+	'802317/baldwin-hills-scenic-overlook',
+	'1026295535/beverlywood-los-angeles',
+	'229328915/palms-los-angeles',
+	'220787351/mar-vista-los-angeles',
+	'256575525/west-los-angeles',
 #	'137242643/santa-monica-california/',
 #	'212970049/beverly-hills-california',
 #	'212931920/hollywood/'
@@ -137,7 +143,8 @@ my_low_locations = [
 	'1026253633/corepower-yoga',
 	'229811324/corepower-yoga',
 	'1026344343/corepower-yoga',
-	'469890540025601/corepower-yoga'
+	'469890540025601/corepower-yoga',
+	'851893353/museum-of-jurassic-technology',
 ]
 
 my_users = [
@@ -162,7 +169,7 @@ while True:
 			os._exit(1)
 	for my_loc in my_low_locations:
 		try:
-			session.like_by_locations([my_loc], amount=20)
+			session.like_by_locations([my_loc], amount=3)
 			time.sleep(60)
 		except (TimeoutException, WebDriverException) as e:
 			print "Caught exception from selenium.common.exceptions: " + str(e)

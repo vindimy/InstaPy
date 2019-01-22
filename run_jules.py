@@ -75,12 +75,23 @@ my_tags = [
 my_high_locations = [
 #        '212999109/los-angeles-california/',
 #        '213420290/culver-city-california/',
+	'6382993/chiang-mai-thailand',
 	'213131048/berlin-germany/',
 	'216699620/wedding-berlin/',
 	'213359469/munich-germany/',
 #	'213100244/barcelona-spain/'
 ]
 my_low_locations = [
+	'266421241/sunshine-massage-school',
+	'278348911/the-yoga-tree-chiang-mai',
+	'250820465105669/om-ganesha-yoga-chiang-mai',
+	'374880258/wild-rose-yoga',
+	'1026177668/freedom-yoga-and-cooking-school-chiang-mai',
+	'217888514/four-seasons-resort-chiang-mai',
+	'264593106/yoga-kuukan',
+	'933134878/mahasiddha-yoga',
+	'285483182/yoga-ananda-chiangmai',
+	'236570346856529/yoga-ananda-jing-jai-market',
         '214645216/muscle-beach/',
 	'237878116/seestrae/',
 	'116971912/yoga-sky-berlin/',
@@ -108,6 +119,19 @@ my_low_locations = [
 	'197030017008189/dharma-yoga-berlin/',
 	'293142986/peace-yoga-berlin-jivamukti-yoga-school/',
 	'1020116796/runbase-berlin/'
+]
+
+my_users=[
+	'yoga_mit_lucie',
+	'kickassyoga',
+	'martamwitecka',
+	'yuvaloz',
+	'xploreyourfit_by_sinah',
+	'oliverchamo',
+	'johnkarvelis',
+	'skovgaardjeppe',
+	'ishine_gape',
+	'jasonnemer'
 ]
 
 
@@ -146,7 +170,6 @@ while True:
 
 
 	## Interact with sought-after users ##
-	my_users=['yoga_mit_lucie', 'kickassyoga', 'martamwitecka', 'yuvaloz', 'xploreyourfit_by_sinah', 'oliverchamo', 'johnkarvelis', 'skovgaardjeppe', 'ishine_gape', 'jasonnemer']
 	for user in my_users:
 		try:
 			session.interact_user_followers([user], amount=10, randomize=True)

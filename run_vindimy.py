@@ -67,14 +67,11 @@ my_tags = [
 	'#dancerlife',
 	'#balletlife',
 	'#pointe',
-	'#fitnessmotivation',
 	'#fitnessphotography',
 	'#fitnessmodel',
 	'#culvercity',
 	'#santamonica',
-	'#corepoweryoga',
-	'#myartisreal',
-	'#california'
+	'#corepoweryoga'
 ]
 
 my_high_locations = [
@@ -85,32 +82,6 @@ my_high_locations = [
 	'212931920/hollywood/'
 ]
 my_low_locations = [
-        '116971912/yoga-sky-berlin/',
-        '250197745354365/yoga-rebellion/',
-        '65297733/chimosa/',
-        '599299874/yogafurdich/',
-        '1020136606/ashtanga-yoga-berlin/',
-        '289063685/element-yoga/',
-        '96367417/yellow-yoga/',
-        '213813394/jivamukti-yoga-berlin/',
-        '265803191/lagoa-yoga-berlin/',
-        '254570144724325/zen-yoga-by-dynamic-mindfulness/',
-        '256159741/ycba-yogacircle-berlin-academy/',
-        '1032826954/spirit-yoga-berlin/',
-        '1015509393/yoga-delta-berlin/',
-        '238701440/spirit-yoga-berlin/',
-        '1800120726682395/yoga-barn-berlin/',
-        '1022004264/becycle/',
-        '32934/aspria-berlin-kudamm/',
-        '773405931/ladycompany-fitness-fur-frauen-gmbh/',
-        '242061176268639/elixia-berlin/',
-        '1844977909085562/elixia-berlin/',
-        '105605239994491/elixia-berlin/',
-        '1015509393/yoga-delta-berlin/',
-        '197030017008189/dharma-yoga-berlin/',
-        '293142986/peace-yoga-berlin-jivamukti-yoga-school/',
-        '1020116796/runbase-berlin/',
-
 	'214645216/muscle-beach/',
 	'7896197/hot8yoga/',
 	'47542763/hot-8-yoga/',
@@ -141,8 +112,43 @@ my_low_locations = [
 	'146477070/aurayoga',
 	'223635232/tempest-freerunning-academy-south-bay',
 	'2340612/tempest-freerunning-academy',
+        '96158264/forward-fold-yoga',
+        '1714234355507818/agni-yoga',
+        '272074/electric-soul-yoga',
+        '530611/harmony-yoga',
+        '402321672/kinship-studios',
+        '20791098/liveyoga-wellness',
+        '124737873/soho-yoga',
+        '205505996556641/soho-yoga-dtla',
+        '5239297/the-green-yogi',
+        '408483251/the-soul-shack-yoga-wellness-studio',
+        '5359427/yoga-blend',
+        '9923008/yoga-circle-downtown',
+        '6672274/yoga-house',
+        '5928545/yoga-loft-manhattan-beach',
+        '4216869/yogala-studios',
+        '321242651980143/corepower-yoga',
+        '4562253/corepower-yoga',
+        '97618096/corepower-yoga',
+        '395530056/corepower-yoga',
+        '210171546012908/corepower-yoga',
+        '379914175/corepower-yoga',
+        '1026253633/corepower-yoga',
+        '229811324/corepower-yoga',
+        '1026344343/corepower-yoga',
+        '469890540025601/corepower-yoga'
 ]
 
+my_users = [
+        'bhaktiyogashala',
+        'cirqueschool',
+        'tempestfreerunning',
+        'dancelinela',
+        'kinetictheorycircus',
+        'dancefitnessla',
+        'wanderlusthlwd',
+        'y7studio'
+]
 
 while True:
 	## Interact with locations ##
@@ -177,8 +183,6 @@ while True:
 	time.sleep(600)
 
 	## Interact with sought-after users ##
-	my_users=[
-	]
 	for user in my_users:
 		try:
 			session.interact_user_followers([user], amount=10, randomize=True)
