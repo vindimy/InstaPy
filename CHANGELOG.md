@@ -3,33 +3,218 @@ The **goal** of this file is explaining to the users of our project the notable 
 
 _The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html)_.
 
+
+## [0.4.3] - 2019-05-15
+### Fixed
+- Commenting issue #4409
+
+
+## [0.4.2] - 2019-04-15
+### Fixed
+- Fail of whole pod run on exception
+
+
+## [0.4.1] - 2019-04-06
+### Added
+- Support for split database with -sdb flag to avoid SQLite lock up
+
+### Fixed
+- "Failed to find login button" when trying to login (add KEYS.ENTER to submit login data)
+
+
+## [0.4.0] - 2019-04-03
+### Added
+- Improved info provided by log messages in instapy.py and like_util.py
+- Possibility to skip non bussiness accounts
+
+### Changed
+- Remove docker from core, moved into instapy-docker repo
+- Remove quickstart templates and only reference instapy-quickstart
+- Restructure README and add new DOCUMENTATION file
+
+### Fixed
+- "UnboundLocalError: local variable 'tag' referenced before assignment" when there is no smart-hastag genereated
+- xPath to dialog_address
+
+
+## [0.3.4] - 2019-03-17
+### Added
+- (re) add page_reload, after cookie load, on login_user()
+
+### Fixed
+- "Failed to load desired amount of users" when trying to read long follower lists
+
+
+## [0.3.3] - 2019-03-14
+### Added
+- Add additional exception catch to Login check
+
+### Changed
+- Set language on the browser (no clicks required)
+
+### Fixed
+- Get_active_users hotfix
+
+
+## [0.3.2] - 2019-03-12
+### Fixed
+- Hot fix problems with browser abstraction class
+
+
+## [0.3.1] - 2019-03-12
+### Fixed
+- Removed retry decorator 
+
+
+## [0.3.0] - 2019-03-11
+### Added
+- Allowing `follow_by_tags` to interact with the user
+- Context manager to interaction calls in `like_by_tags` and `follow_likers`
+- Engagement pods feature 🙌 
+- Smart Hashtags based on locations `set_smart_location_hashtags`
+- Verify action for unfollow and follow actions
+- Browser abstraction and Decorator that handles Selenium Browser exceptions by reloading
+- Add delay unfollow of follow backers
+
+### Changed
+- Expose `threaded_session` of Instapy.end()
+
+### Fixed
+- `follow_likers` always fetches zero likers
+- Prevent division by zero in `validate_username`
+
+
+## [0.2.3] - 2019-03-01
+### Changed
+- Made Log in text checking more resilient 
+
+
+## [0.2.2] - 2019-02-21
+### Fixed
+- Chromedriver requirement now >= 2.44 instead of == 2.44
+
+
+## [0.2.1] - 2019-02-21
+### Fixed
+- xPath for Log In button
+
+
+## [0.2.0] - 2019-02-18
+### Added
+- Accept pending follow requests for private account
+- Feature to `follow_by_locations`
+- Proxy Authentication support for Firefox
+
+### Fixed
+- Only import instapy-chromedriver package when needed
+- Avoid user errors providing user names with caps
+- Fix get_active_users wrong behavior on videos
+- Bug in _CLI_ **argparsing** - `proxy_port` & `page_delay` are integers and not strings.
+- Selectors for finding comments and liking comments on posts
+- Temporarily turn off follow for `like_by_tags` interaction
+
+### Changed
+- Enable users interact by the comments of their own profiles.
+- Moved elements from docs folder to instapy-docs and instapy-research repositories
+
+
+## [0.1.3] - 2019-02-05
+### Fixed
+- Fix "_Failed to load desired amount of users!_" issue.
+
+### Added
+- Add _Progress Tracker_ to `get_users_through_dialog()` function.
+- Add Proxy Authentication for Firefox
+
+
+## [0.1.2] - 2019-02-04
+### Fixed
+- Fix for scrollIntoView error.
+
+
+## [0.1.1] - 2019-02-04
+### Added
+- **Workspace** folders; Now user's data files will be stored at the **workspace** folder.  
+- _InstaPy_ has been published to _PyPI_; Now, can install/manage it by **pip** as **instapy** package.  
+- _Github_ releases has been initiated; Will be released in-parallel with _PyPI_ deployments.  
+- Add Universal Testing Framework- **tox** with **pytest** & **flake8**.  
+- Upgrade _Travis CI_ usage (_**tox** as build script_).  
+- Send messages to _Discord_ #**status** channel about jobs' build states from _Travis CI_.
+- Add instapy-chromedriver package if no chromedriver is in path.
+- Add _argparsing_ feature. Users are now able to provide credentials (_and more_) through CLI args.
+- Turn off verification based on _relationship bounds_ **by default**, completely (_see #757815f commit_).
+- Simplify the default **quickstart** script much more.
+
+
+## [Unreleased] - 2019-01-27
+### Changed
+- Add track post/profile
+- Avoid prints for only one user
+
+### Fixed
+- No posts exception when scraping likes
+
+
+## [Unreleased] - 2019-01-22
+### Added
+- Now `set_dont_unfollow_active_users()` feature also has a Progress Tracker support.
+
+### Fixed
+- Fix `set_dont_unfollow_active_users()` feature completely.
+
+
+## [Unreleased] - 2019-01-17
+### Changed
+- Optimizing Dockerfile for smaller docker image.
+
+### Fixed
+- Fix "_Unable to locate element: ...xpath","selector":"//div[text()=\'Likes\'..._" error.
+
+
+## [Unreleased] - 2019-01-16
+### Fixed
+- Fix "_Failed to load desired amount of users!_" issue.
+
+
+## [Unreleased] - 2019-01-15
+### Fixed
+- Handle A/B-Test for comments (graphql edge).
+
+
 ## [Unreleased] - 2019-01-13
 ### Fixed 
-- Adjust docker-compose.yml according to new Dockerfile
+- Adjust docker-compose.yml according to new Dockerfile.
+
 
 ## [Unreleased] - 2019-01-11
 ### Fixed
-- Correctly mount Docker volume, make it work properly with chromedriver installed in assets folder
+- Correctly mount Docker volume, make it work properly with chromedriver installed in assets folder.
+
 
 ## [Unreleased] - 2019-01-10
 ### Added 
-- Feature to remove outgoing unapproved follow requests from private accounts
+- Feature to remove outgoing unapproved follow requests from private accounts.
+
 
 ## [Unreleased] - 2019-01-05
 ### Changed
-- Resolve security warning with new pyyaml version, updated pyyaml to version 4.2b1
+- Resolve security warning with new pyyaml version, updated pyyaml to version 4.2b1.
+
 
 ## [Unreleased] - 2019-01-04
 ### Fixed
-- Fix for non-authenticated proxies in chrome headless browser
+- Fix for non-authenticated proxies in chrome headless browser.
+
 
 ## [Unreleased] - 2019-01-02
 ### Fixed
--  User without timestamp will use the timestamp of previous user
+-  User without timestamp will use the timestamp of previous user.
+
 
 ## [Unreleased] - 2019-01-01
 ### Changed
-- PEP8 layout changes
+- PEP8 layout changes.
+
 
 ## [Unreleased] - 2018-12-17
 ### Added
@@ -45,9 +230,11 @@ _The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 - Fix error occured while liking a comment (raised at #3594).
 - Fix Follow-Likers feature which couldn't fetch likers properly (raised at #3573).
 
+
 ## [Unreleased] - 2018-12-16
 ### Added
 - Save account progress information into database adding the possibility for external tools to collect and organize the account progress.
+
 
 ## [Unreleased] - 2018-12-10
 ### Fixed

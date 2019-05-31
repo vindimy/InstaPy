@@ -12,6 +12,9 @@ from .util import get_action_delay
 from .util import explicit_wait
 from .util import extract_text_from_element
 from .util import web_address_navigator
+
+from .like_util import get_media_edge_comment_string
+
 from .quota_supervisor import quota_supervisor
 
 from selenium.common.exceptions import WebDriverException
@@ -214,7 +217,7 @@ def get_comments_on_post(browser,
             comments_block = browser.find_elements_by_xpath(
                 comments_block_XPath)
             for comment_line in comments_block:
-                commenter_elem = comment_line.find_element_by_tag_name('a')
+                commenter_elem = comment_line.find_element_by_xpath('//h3/a')
                 commenter = extract_text_from_element(commenter_elem)
                 if (commenter and
                         commenter not in [owner, poster, ignore_users] and
@@ -299,10 +302,12 @@ def is_commenting_enabled(browser, logger):
 def get_comments_count(browser, logger):
     """ Get the number of total comments in the post """
     try:
-        comments_count = browser.execute_script(
+        media = browser.execute_script(
             "return window._sharedData.entry_data."
-            "PostPage[0].graphql.shortcode_media."
-            "edge_media_to_comment.count")
+            "PostPage[0].graphql.shortcode_media")
+
+        media_edge_string = get_media_edge_comment_string(media)
+        comments_count = media[media_edge_string]['count']
 
     except Exception as e:
         msg = ("Failed to get comments' count!\n\t{}"

@@ -8,6 +8,7 @@ from .util import format_number
 from .util import add_user_to_blacklist
 from .util import click_element
 from .util import is_private_profile
+from .util import is_page_available
 from .util import update_activity
 from .util import web_address_navigator
 from .util import get_number_of_posts
@@ -192,8 +193,8 @@ def get_links_for_location(browser,
                     else:
                         logger.info(
                             "'{}' location POSSIBLY has less images than "
-                            "desired...".format(
-                                location))
+                                "desired:{} found:{}...".format(
+                                location, amount, len(links)))
                         break
             else:
                 filtered_links = len(links)
@@ -355,8 +356,8 @@ def get_links_for_tag(browser,
                     else:
                         logger.info(
                             "'{}' tag POSSIBLY has less images than "
-                            "desired...".format(
-                                tag))
+                            "desired:{} found:{}...".format(
+                                tag, amount, len(links)))
                         break
             else:
                 filtered_links = len(links)
@@ -404,21 +405,27 @@ def get_links_for_username(browser,
     # then do not navigate to it again
     web_address_navigator(browser, user_link)
 
-    if "Page Not Found" in browser.title:
+    if not is_page_available(browser, logger):
         logger.error(
-            'Intagram error: The link you followed may be broken, or the '
+            'Instagram error: The link you followed may be broken, or the '
             'page may have been removed...')
         return False
 
     # if private user, we can get links only if we following
-    following, follow_button = get_following_status(browser, 'profile',
-                                                    username, person, None,
-                                                    logger, logfolder)
-    if following == 'Following':
-        following = True
-    is_private = is_private_profile(browser, logger, following)
-    if (is_private is None) or (is_private is True and not following) or (
-            following == 'Blocked'):
+    following_status, follow_button = get_following_status(
+        browser, "profile", username, person, None, logger, logfolder)
+
+    #if following_status is None:
+    #    browser.wait_for_valid_connection(browser, username, logger)
+
+    #if following_status == 'Follow':
+    #    browser.wait_for_valid_authorization(browser, username, logger)
+
+    is_private = is_private_profile(browser, logger, following_status == 'Following')
+    if (is_private is None
+        or (is_private is True and following_status not in ['Following', True])
+        or (following_status == 'Blocked')):
+        logger.info('This user is private and we are not following')
         return False
 
     # Get links
@@ -463,6 +470,17 @@ def get_links_for_username(browser,
         random.shuffle(links)
 
     return links[:amount]
+
+
+def get_media_edge_comment_string(media):
+    """AB test (Issue 3712) alters the string for media edge, this resoves it"""
+    options = ['edge_media_to_comment', 'edge_media_preview_comment']
+    for option in options:
+        try:
+            media[option]
+        except KeyError:
+            continue
+        return option
 
 
 def check_link(browser, post_link, dont_like, mandatory_words,
@@ -522,19 +540,21 @@ def check_link(browser, post_link, dont_like, mandatory_words,
         image_text = image_text[0]['node']['text'] if image_text else None
         location = media['location']
         location_name = location['name'] if location else None
+        media_edge_string = get_media_edge_comment_string(media)
+        # double {{ allows us to call .format here:
         owner_comments = browser.execute_script('''
             latest_comments = window._sharedData.entry_data.PostPage[
-            0].graphql.shortcode_media.edge_media_to_comment.edges;
-            if (latest_comments === undefined) {
+            0].graphql.shortcode_media.{}.edges;
+            if (latest_comments === undefined) {{
                 latest_comments = Array();
                 owner_comments = latest_comments
                     .filter(item => item.node.owner.username == arguments[0])
                     .map(item => item.node.text)
                     .reduce((item, total) => item + '\\n' + total, '');
-                return owner_comments;}
-            else {
-                return null;}
-        ''', user_name)
+                return owner_comments;}}
+            else {{
+                return null;}}
+        '''.format(media_edge_string), user_name)
 
     else:
         media = post_page[0]['media']
@@ -568,7 +588,8 @@ def check_link(browser, post_link, dont_like, mandatory_words,
     """If the image still has no description gets the first comment"""
     if image_text is None:
         if graphql:
-            image_text = media['edge_media_to_comment']['edges']
+            media_edge_string = get_media_edge_comment_string(media)
+            image_text = media[media_edge_string]['edges']
             image_text = image_text[0]['node']['text'] if image_text else None
 
         else:
@@ -799,9 +820,16 @@ def like_comment(browser, original_comment_text, logger):
             comment = extract_text_from_element(comment_elem)
 
             if comment and (comment == original_comment_text):
+                # find "Like" span (a direct child of Like button)
+                span_like_elements = comment_line.find_elements_by_xpath(
+                    "//span[@aria-label='Like']")
+                if not span_like_elements:
+                    # this is most likely a liked comment
+                    return True, "success"
+
                 # like the given comment
-                comment_like_button = comment_line.find_element_by_tag_name(
-                    "button")
+                span_like = span_like_elements[0]
+                comment_like_button = span_like.find_element_by_xpath('..')
                 click_element(browser, comment_like_button)
 
                 # verify if like succeeded by waiting until the like button
